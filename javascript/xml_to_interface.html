@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mybatis xml 소스에서 Mapper Method 목록 생성</title>
+</head>
+<body>
+    <textarea name="" id="sql" cols="30" rows="10" style="width:100%"></textarea>
+    <br> <br>
+    <button onclick="clickIdCollector();">id추출</button>
+    <br> <br>
+    <textarea name="" id="idCollector" cols="30" rows="20" style="width:100%"></textarea>
+    <script>
+        function clickIdCollector(){
+            var result = "";
+            var xmlString = document.getElementById("sql").value;
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlString,"text/xml");
+            
+            
+            var selects = xmlDoc.getElementsByTagName("select");
+            for (let index = 0; index < selects.length; index++) {
+                const el = selects[index];
+                result += "public List<Map<String, Object>> " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+            }
+
+            selects  = xmlDoc.getElementsByTagName("update");
+            for (let index = 0; index < selects.length; index++) {
+                const el = selects[index];
+                result += "public int " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+            }
+
+            selects  = xmlDoc.getElementsByTagName("delete");
+            for (let index = 0; index < selects.length; index++) {
+                const el = selects[index];
+                result += "public int " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+            }
+
+            document.getElementById("idCollector").value = result;
+
+        }
+
+        // xmldocument https://docs.servicenow.com/bundle/rome-application-development/page/script/server-scripting/concept/c_XMLDocumentScriptObject.html
+
+        function getXmlFromString(xmlStr) {
+            var parseXml;
+
+            if (window.DOMParser) {
+                var dp = new window.DOMParser();
+                return dp.parseFromString(xmlStr, "text/xml");
+            } else if (typeof window.ActiveXObject != "undefined" 
+                && new window.ActiveXObject("Microsoft.XMLDOM")) {
+                var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async = "false";
+                xmlDoc.loadXML(xmlStr);
+                
+                return xmlDoc;
+            }
+
+            return null;
+        }
+
+        /**
+            1. resultclass 를 resultType 으로 
+            
+                before : resultClass="hmap" 
+                after : resultType="hashmap"
+
+            2. 파라미터 표기 방식 변경 
+                before : #([a-z|A-Z|0-9|_]+)#
+                after : #{$1}
+
+            3. <isPropertyAvailable property="xxxx">
+                before : \<isPropertyAvailable property="([a-z|A-Z|0-9|_]+)"\>
+                 after : <if test="@org.apache.commons.lang3.StringUtils@anyNotNull($1)">        
+
+                before : \<isNotEmpty property="([a-z|A-Z|0-9|_]+)"\>
+                after : <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty($1)">
+
+                before : \<isNotPropertyAvailable property="([a-z|A-Z|0-9|_]+)"\>
+                before : \<isEmpty property="([a-z|A-Z|0-9|_]+)"\>
+                after : <if test="@org.apache.commons.lang3.StringUtils@isEmpty($1)">     
+
+                before : \</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>
+                after : </if>     
+                
+                before : \<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-]+)"\>
+                after: <if test="$1 ne '$2'">
+
+                before : \<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-]+)"\>
+                after: <if test="$1 eq '$2'">
+
+                
+
+            4. >= , <>
+                    
+                before : > 
+                after : <![CDATA[ > ]]>
+         */ 
+
+    </script>
+</body>
+</html>

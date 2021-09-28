@@ -23,19 +23,19 @@
             var selects = xmlDoc.getElementsByTagName("select");
             for (let index = 0; index < selects.length; index++) {
                 const el = selects[index];
-                result += "public List<Map<String, Object>> " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+                result += "public List<Map<String, Object>> " + el.getAttribute("id") +"(Map<String, Object> requestData);"+"\r\n\n";
             }
 
             selects  = xmlDoc.getElementsByTagName("update");
             for (let index = 0; index < selects.length; index++) {
                 const el = selects[index];
-                result += "public int " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+                result += "public int " + el.getAttribute("id") +"(Map<String, Object> requestData);"+"\r\n\n";
             }
 
             selects  = xmlDoc.getElementsByTagName("delete");
             for (let index = 0; index < selects.length; index++) {
                 const el = selects[index];
-                result += "public int " + el.getAttribute("id") +"(Map<String, Object> bbb);"+"\r\n\n";
+                result += "public int " + el.getAttribute("id") +"(Map<String, Object> requestData);"+"\r\n\n";
             }
 
             document.getElementById("idCollector").value = result;
@@ -80,6 +80,8 @@
                 after : <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty($1)">
 
                 before : \<isNotPropertyAvailable property="([a-z|A-Z|0-9|_]+)"\>
+                after : <if test="!@org.apache.commons.lang3.StringUtils@anyNotNull($1)">     
+
                 before : \<isEmpty property="([a-z|A-Z|0-9|_]+)"\>
                 after : <if test="@org.apache.commons.lang3.StringUtils@isEmpty($1)">     
 

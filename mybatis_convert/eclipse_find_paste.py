@@ -52,6 +52,14 @@ if screen != "":
     # ]]> 지우기
     callFindReplaceText('\]\]>', '' )
 
+    # mybatis 선언 
+    callFindReplaceText('\<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd"\>', '<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">')
+
+    # nameSpace 
+    callFindReplaceText('\<sqlMap namespace="([a-z|A-Z|0-9|_]+)"\>', '<mapper namespace="패키지명 수정.$1Repository">' )
+    
+    callFindReplaceText('\</sqlMap\>', '</mapper>' )
+
     #  parameterClass="map" => ""
     callFindReplaceText('parameterClass="map"', '' )
 
@@ -80,9 +88,11 @@ if screen != "":
 
     # before : \<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>  after: <if test="$1 ne '$2'">
     callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>', '<if test="$1 ne \'$2\'">' )
+    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1"\>', '<if test="pageSize ne -1">' )
 
     # before : \<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\> after: <if test="$1 eq '$2'">  
     callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.|@|.]+)"\>', '<if test="$1 eq \'$2\'">' )
+    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1', '<if test="$1 eq -1">' )
 
     # 종료 태그 before : \</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>  after : </if>     
     callFindReplaceText('\</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>', '</if>' )
@@ -106,6 +116,11 @@ if screen != "":
 
     # dynamic 
     callFindReplaceText('\<dynamic prepend="WHERE"\>', '<trim prefix="WHERE" prefixOverrides="AND|OR">')
+
+    callFindReplaceText('\<dynamic prepend="ORDER BY"\>', '<trim prefix="ORDER BY">')
+
+
+
     callFindReplaceText('\</dynamic\>', '</trim>')
     print("정상변경완료!")
     print("정상변경완료!")

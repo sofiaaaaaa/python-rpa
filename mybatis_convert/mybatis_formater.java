@@ -41,10 +41,10 @@ class a {
             String oneTab = "    ";
 
             while ((line = bufferedReader.readLine()) != null) {
-                repLine = line.replaceAll(originalString, replaceString);
-                bufferedWriter.write(repLine, 0, repLine.length());
-                bufferedWriter.newLine();
-                System.out.println(line);
+                // repLine = line.replaceAll();
+                // bufferedWriter.write(repLine, 0, repLine.length());
+                // bufferedWriter.newLine();
+                // System.out.println(line);
             }
 
             result = true;

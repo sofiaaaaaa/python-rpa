@@ -16,7 +16,8 @@ class a {
         // List<String> lines = Files.readAllLines(Paths.get(""));
         // System.out.println(lines);
 
-        String fileName = "C:\\test.log";
+        String fileName = "C:\\aa.log";
+
         File inputFile = new File(fileName);
         File outputFile = new File(fileName+".new");
         FileInputStream fileInputStream = null;
@@ -33,8 +34,11 @@ class a {
 
             String line;
             String repLine;
-            String originalString = "aaa";
-            String replaceString = "qqq";
+            String select = "select";
+            String from = "from";
+            String where = "where";
+            String orderBy = "orderBy";
+            String oneTab = "    ";
 
             while ((line = bufferedReader.readLine()) != null) {
                 repLine = line.replaceAll(originalString, replaceString);

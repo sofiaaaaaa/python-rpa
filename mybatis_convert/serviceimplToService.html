@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서비스 임플에서 서비스 목록 생성</title>
+</head>
+<body>
+    <textarea name="" id="sql" cols="30" rows="10" style="width:100%"></textarea>
+    <br> <br>
+    <button onclick="clickIdCollector();">메서드 추출 </button>
+    <br> <br>
+    <textarea name="" id="idCollector" cols="30" rows="20" style="width:100%"></textarea>
+    <script>
+        function clickIdCollector(){
+            var result = "";
+            var source = document.getElementById("sql").value;
+            source = source.split("\n");
+
+            for (let i = 0; i  < source.length; i++) {
+                const el = source[i];
+                console.log(el);
+                if(el.indexOf("throws RuntimeException {") > -1) {
+                    result += el.replace(" throws RuntimeException {", "; \r\n\n");
+                    
+                }
+                
+            }
+
+            document.getElementById("idCollector").value = result;
+
+        }
+
+    </script>
+</body>
+</html>

@@ -38,6 +38,12 @@
                 result += "public int " + el.getAttribute("id") +"(Map<String, Object> requestData);"+"\r\n\n";
             }
 
+            selects  = xmlDoc.getElementsByTagName("insert");
+            for (let index = 0; index < selects.length; index++) {
+                const el = selects[index];
+                result += "public int " + el.getAttribute("id") +"(Map<String, Object> requestData);"+"\r\n\n";
+            }
+
             document.getElementById("idCollector").value = result;
 
         }

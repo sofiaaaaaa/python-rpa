@@ -1,0 +1,7 @@
+/html/body/div/span/a
+
+* id가 login인 모든 태그 
+//*[@id="login"]  
+
+
+크롬 브라우저에서 마우스 오른쪽 버튼 메뉴 copy xPath 로 경로를 가져올 수 있다.   

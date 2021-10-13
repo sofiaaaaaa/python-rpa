@@ -32,10 +32,10 @@ def callFindReplaceText(condition, newStr):
     moveTabAtFindReplacePopup(7)
     pyautogui.keyDown("enter")   
     pyautogui.keyDown("esc")   
-    pyautogui.sleep(2)
+    pyautogui.sleep(3)
     with pyautogui.hold('ctrl'):
         pyautogui.press(['s'])
-    pyautogui.sleep(2)
+    pyautogui.sleep(3)
     
 
 # 메인함수 실행 부분 
@@ -87,17 +87,17 @@ if screen != "":
     callFindReplaceText('\<isEmpty property="([a-z|A-Z|0-9|_]+)"\>', '<if test="@org.apache.commons.lang3.StringUtils@isEmpty($1)">' )
 
     # before : \<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>  after: <if test="$1 ne '$2'">
-    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>', '<if test="$1 ne \'$2\'">' )
-    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1"\>', '<if test="pageSize ne -1">' )
+    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>', '<if test="$1 != \'$2\'">' )
+    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1"\>', '<if test="pageSize != -1">' )
 
     # before : \<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\> after: <if test="$1 eq '$2'">  
-    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.|@|.]+)"\>', '<if test="$1 eq \'$2\'">' )
-    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1', '<if test="$1 eq -1">' )
+    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.|@|.]+)"\>', '<if test="$1 == \'$2\'">' )
+    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1', '<if test="$1 == -1">' )
 
     # 종료 태그 before : \</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>  after : </if>     
     callFindReplaceText('\</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>', '</if>' )
 
-    
+    callFindReplaceText('/\* (.+) \*/', '' )
 
     # 값  비교 (양옆에 공백이 있다는 가정하에 수정 )
     callFindReplaceText(' >= ', ' <![CDATA[ >= ]]> ')

@@ -1,5 +1,8 @@
 #https://www.youtube.com/watch?v=exgO1LFl9x8
 
+#https://www.youtube.com/watch?v=bKPIcoou9N8
+
+
 import pyautogui
 
 

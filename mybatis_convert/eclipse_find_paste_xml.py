@@ -87,11 +87,11 @@ if screen != "":
     callFindReplaceText('\<isEmpty property="([a-z|A-Z|0-9|_]+)"\>', '<if test="@org.apache.commons.lang3.StringUtils@isEmpty($1)">' )
 
     # before : \<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>  after: <if test="$1 ne '$2'">
-    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>', '<if test="$1 != \'$2\'">' )
+    callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\>', '<if test=\'$1 != \"$2\"\'>' )
     callFindReplaceText('\<isNotEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1"\>', '<if test="pageSize != -1">' )
 
     # before : \<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.]+)"\> after: <if test="$1 eq '$2'">  
-    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.|@|.]+)"\>', '<if test="$1 == \'$2\'">' )
+    callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="([a-z|A-Z|0-9|_|-|@|.|@|.]+)"\>', '<if test=\'$1 == \"$2\"\'>' )
     callFindReplaceText('\<isEqual property="([a-z|A-Z|0-9|_]+)" compareValue="-1', '<if test="$1 == -1">' )
 
     # 종료 태그 before : \</(isPropertyAvailable|isNotPropertyAvailable|isNotEqual|isEqual|isNotEmpty|isEmpty)\>  after : </if>     

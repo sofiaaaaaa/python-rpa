@@ -16,5 +16,8 @@ python-rpa 나도코딩 공부 노트
  chrome://version 확인 94.0.4606.71 
  chrome 드라이버 검색하여 설치하기 
 
+## 메일 
+pip install imap-tools --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+
 ## selenium 메뉴얼 사이트 
 https://selenium-python.readthedocs.io/

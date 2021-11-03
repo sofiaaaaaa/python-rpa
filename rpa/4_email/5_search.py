@@ -33,3 +33,11 @@ with MailBox("imap.gmil.com", 993).login(EMAIL_ADDRESS, EMAIL_PASSWORD, initial_
 
     for msg in mailBox.fetch('(ON 07-Nov-2020)', reverse=True, limit=5): # 특정날짜에 온 메일 가져오기 
         print("[{}] {}".format(msg.from_, msg.subject))
+
+import time 
+print(time.strftime('%d-%a-%Y')) #현재날짜 일-요일-년도
+
+import datetime
+dt = datetime.datetime.strptime("2020-12-30", "%Y-%m-%d")
+print(type(dt))
+print(dt.strftime('%d-%a-%Y'))

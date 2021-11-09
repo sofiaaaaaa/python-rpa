@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
         "mybatis_convert",
-        "ignore"
+        "ignore",
+        "Java"
     ]
 }

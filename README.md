@@ -35,6 +35,8 @@ $사용자> pyinstaller -w -F .\파일경로
 #### ".\gui_basic\*.png;gui_basic" : 현재 gui_basic 폴더내에 있는 모든 png파일들을 결과 폴더인 dist/gui_basic 하위에 복사하여 붙여넣기 
 $사용자> pyinstaller -w --add-data ".\gui_basic\*.png;gui_basic" -F .\파일경로
 
+### 크롬 로그인해주는 윈도우즈용 프로그램 만들기
+pyinstaller -w --add-binary ".\chromedriver.exe;." -F C:\Users\X0126516\Documents\python\python-rpa\ignore\test_site\1_login.py
 
 
 ### 소스에 이미지 등의 경로가 포함된 경우 절대 경로로 반환하도록 수정 
@@ -66,3 +68,9 @@ https://selenium-python.readthedocs.io/
 --- 
 
 ## GUI 프로그래밍 t-kinter
+
+
+## Selenium 시스템에 부착된 장치가 작동하지 않습니다. 에러발생시 해결방법 
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+browser = webdriver.Chrome(options=options)

@@ -31,3 +31,8 @@ btn.pack()
 
 
 root.mainloop()
+
+
+# s = "a b c d e f g"
+
+# print(f's         : {s}')

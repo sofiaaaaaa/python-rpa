@@ -19,7 +19,7 @@ python-rpa 나도코딩 공부 노트
  pip install pyinstaller  --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
 ### screen shot 
  pip install pillow --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
- 
+ pip install keyboard --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
 
 ## exe 파일 만들기 명령어
 

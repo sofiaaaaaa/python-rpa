@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국말만 건져올리기</title>
+</head>
+<body>
+    <textarea name="" id="sql" cols="30" rows="10" style="width:100%"></textarea>
+    <br> <br>
+    <button onclick="clickIdCollector();">단어 추출 </button>
+    <br> <br>
+    <textarea name="" id="idCollector" cols="30" rows="20" style="width:100%"></textarea>
+    <script>
+        function clickIdCollector(){
+            var result = "";
+            var source = document.getElementById("sql").value;
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(source,"text/xml");
+            
+            
+            var selects = xmlDoc.getElementsByTagName("contentsArea");
+            for (let index = 0; index < selects.length; index++) {
+                const el = selects[index]; // el.getAttribute("id")
+                console.log(el);
+            }
+
+            document.getElementById("idCollector").value = result;
+
+        }
+
+        function is_hangul_char(ch) {
+            c = ch.charCodeAt(0);
+            if( 0x1100<=c && c<=0x11FF ) return true;
+            if( 0x3130<=c && c<=0x318F ) return true;
+            if( 0xAC00<=c && c<=0xD7A3 ) return true;
+            return false;
+        }
+
+
+        // vm5267 값 삭제하기 
+// VM([0-9]+)\:([0-9]+)  
+// message./ioEmpCompChgReq.screenName=
+
+
+// 라벨 값 가져오기 
+var title = document.getElementById("GoContent");
+if(title != null && title != "undefined") {
+    console.log($(title).html().trim());
+
+}
+
+var subTitle= document.getElementsByTagName("h4");
+for(var item of subTitle) {
+ var $it = $(item).html();    
+if($it.indexOf("<svg") > -1){
+  var $label = $($it.trim());
+  console.log("검색");
+} else {
+ console.log($it.trim());
+}
+}
+
+var s = document.getElementsByTagName("TH");
+for(var item of s) {
+ var $it = $(item).html();    
+if($it.indexOf("<label") > -1  || $it.indexOf("<svg")  > -1){
+  var $label = $($it);
+  console.log($label.html().trim());
+} else {
+ console.log($it.trim());
+}
+}
+
+var labels = document.getElementsByTagName("label");
+for(var item of labels ) {
+if($(item).hasClass("point")) {
+ console.log($(item).html().trim());
+}
+}
+
+lables= document.getElementsByClassName("point");
+for(var item of labels ) {
+    if(["정보관리", "출입관리", "물품신청", "대표관리자", "게시판"].indexOf($(item).html().trim()) == -1) {
+        console.log( $(item).html().trim());
+
+    }
+}
+
+lables= document.getElementsByClassName("point_red");
+for(var item of labels ) {
+    if(["정보관리", "출입관리", "물품신청", "대표관리자", "게시판"].indexOf($(item).html().trim()) == -1) {
+        console.log( $(item).html().trim());
+
+    }
+}
+
+
+
+var buttons= document.getElementsByTagName("button");
+for(var item of buttons) {
+ var $it = $(item).html();    
+if($it.indexOf("<svg") > -1){
+  console.log("검색");
+} else {
+ console.log($it);
+}
+}
+
+
+    </script>
+</body>
+</html>

@@ -4,45 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한국말만 건져올리기</title>
+    <title>alertloop</title>
 </head>
 <body>
     <textarea name="" id="sql" cols="30" rows="10" style="width:100%"></textarea>
+    <textarea name="" id="sql2" cols="30" rows="10" style="width:100%">item</textarea>
+
     <br> <br>
-    <button onclick="clickIdCollector();">단어 추출 </button>
+    <button onclick="clickIdCollector();">만들기 </button>
     <br> <br>
     <textarea name="" id="idCollector" cols="30" rows="20" style="width:100%"></textarea>
     <script>
         function clickIdCollector(){
             var result = "";
             var source = document.getElementById("sql").value;
-            var parser = new DOMParser();
-            var xmlDoc = parser.parseFromString(source,"text/xml");
-            
-            
-            var selects = xmlDoc.getElementsByTagName("contentsArea");
-            for (let index = 0; index < selects.length; index++) {
-                const el = selects[index]; // el.getAttribute("id")
-                console.log(el);
+            var name = document.getElementById("sql2").value;
+
+            for (let index = 1; index < 150; index++) {
+                var el = "message."+source+"."+name+index+"=\n";
+                result += el;
             }
 
             document.getElementById("idCollector").value = result;
 
         }
 
-        function is_hangul_char(ch) {
-            c = ch.charCodeAt(0);
-            if( 0x1100<=c && c<=0x11FF ) return true;
-            if( 0x3130<=c && c<=0x318F ) return true;
-            if( 0xAC00<=c && c<=0xD7A3 ) return true;
-            return false;
-        }
 
 
         // vm5267 값 삭제하기 
 // VM([0-9]+)\:([0-9]+)  
 // message./ioEmpCompChgReq.screenName=
-
+/*
 
 // 라벨 값 가져오기 
 var title = document.getElementById("GoContent");
@@ -80,22 +72,6 @@ if($(item).hasClass("point")) {
 }
 }
 
-lables= document.getElementsByClassName("point");
-for(var item of labels ) {
-    if(["정보관리", "출입관리", "물품신청", "대표관리자", "게시판"].indexOf($(item).html().trim()) == -1) {
-        console.log( $(item).html().trim());
-
-    }
-}
-
-lables= document.getElementsByClassName("point_red");
-for(var item of labels ) {
-    if(["정보관리", "출입관리", "물품신청", "대표관리자", "게시판"].indexOf($(item).html().trim()) == -1) {
-        console.log( $(item).html().trim());
-
-    }
-}
-
 
 
 var buttons= document.getElementsByTagName("button");
@@ -108,7 +84,7 @@ if($it.indexOf("<svg") > -1){
 }
 }
 
-
+*/
     </script>
 </body>
 </html>

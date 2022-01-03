@@ -116,3 +116,97 @@ linkedList1.desc()
 
 linkedList1.delete(4)
 linkedList1.desc()
+
+
+# 더블링크드리스트 
+# 이전링크주소 | 데이터 | 다음링크주소 로 이루어진 노드.
+# 앞뒤로 검색이 가능한 이점이 있다. 
+
+class DoubleNode:
+    def __init__(self, data, prev=None, next=None):
+        self.prev = prev
+        self.data = data
+        self.next = next
+
+class DoubleNodeMgmt:
+    def __init__(self, data):
+        self.head = DoubleNode(data)
+        self.tail = head
+
+    def insert(self, data):
+        if self.head == None:
+            self.head = DoubleNode(data)
+            self.tail = self.head
+        else:
+            node = self.head
+            while node.next:
+                node = node.next
+            new = DoubleNode(data)
+            node.next = new
+            new.prev = node
+            self.tail = new
+    
+    def desc(self):
+        node = self.head
+        while node:
+            print(node.data)
+            node = node.next
+
+    def search_from_head(self, data):
+        if self.head == None:
+            return False
+
+        node = self.head
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.next
+        return False
+
+    def search_from_tail(self, data):
+        if self.tail == None:
+            return False
+
+        node = self.tail
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.prev
+        return False
+
+    def insert_before(self, data, before_data):
+        if self.head == None:
+            self.head = DoubleNode(data)
+            return True
+        else:
+            node = self.tail
+            while node.data != before_data:
+                node = node.prev
+                if node == None:
+                    return False
+            new = Node(data)
+            before_new = node.prev
+            before_new.next = new
+            new.next = node
+            new.prev = before_new
+            node.prev = new 
+            return True
+
+
+
+double_linked_list = DoubleNodeMgmt(0)
+for data in range(1,10):
+    double_linked_list.insert(data)
+
+double_linked_list.desc()
+
+
+node_3 = double_linked_list.search_from_head(10)
+print(node_3.data)
+
+# 2 앞에 1.5입력 
+double_linked_list.insert_before(1.5, 2)
+
+        

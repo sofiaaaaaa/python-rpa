@@ -125,3 +125,111 @@ read_data("aa")
 # 2. Linear Probing 기법 
 #    closing hashing 기법. 해쉬 테이블 저장공간 안에서 해결. 
 #    충돌이 일어나면, hash address의 다음 address부터 맨 처음 나오는 빈공간에 저장한다.  
+
+
+def get_key(data):
+    return hash(data)
+
+def hash_function(key):
+    return key % 8
+
+def save_data(data, value):
+    index_key = get_key(data)
+    hash_address = hash_function(index_key)
+    if hash_table[hash_address] != 0:
+        for index in range(hash_address, len(hash_table)):
+            if hash_table[index] == 0:
+                hash_table[index] = [index_key, value]
+                return
+            elif hash_table[index][0] == index_key:
+                hash_table[index][1] = value # 값 업데이트 
+                return 
+    else: 
+        hash_table[hash_address] = [index_key, value]
+     
+
+def read_data(data):
+    index_key = get_key(data)
+    hash_address = hash_function(index_key)
+    if hash_table[hash_address] != 0:
+        for index in range(hash_address, len(hash_table)):
+           if hash_table[index] == 0:
+               return None
+           elif hash_table[index][0] == index_key: 
+               return hash_table[index][1]
+    else:
+        return None
+
+
+# 동일한 해쉬값 조회하기 
+print(hash('aa')%8)
+print(hash('bb')%8)
+
+
+save_data("aa", "111")
+save_data("bb", "222")
+read_data("aa")
+
+
+# 해쉬 함수와 키 생성 함수 
+# * 파이썬의 hash()함수는 실행할 때마다 값이 달라질 수 있음
+# * 유명한 hash함수 : SHA(Secure Hash Algorithm, 안전한 해시 알고리즘 )
+#    => 어떤 데이터도 유일한 고정된 크기의 고정값을 리턴해주므로 해쉬함수로 활용가능함 
+#   SHA-1 , SHA-256
+
+
+# SHA-1 함수 
+import hashlib
+
+data = 'test'.encode() # b'test' 와 동일 
+hash_object = hashlib.sha1()
+hash_object.update(data) # byte로 변환한 값을 hash값 변환
+hex_dig = hash_object.hexdigest() # 16진수로 변환 
+print(hex_dig)
+
+
+# SHA-256 함수 
+
+data = 'test'.encode() # b'test' 와 동일 
+hash_object = hashlib.sha256()
+hash_object.update(data) # byte로 변환한 값을 hash값 변환
+hex_dig = hash_object.hexdigest() # 16진수로 변환 
+print(hex_dig)
+
+
+
+def get_key(data): 
+    hash_object = hashlib.sha256()
+    hash_object.update(data.encode())
+    hex_dig = hash_object.hexdigest()
+    return int(hex_dig, 16) # 16진수 문자를 10진수 숫자로 변환 
+
+def hash_function(key):
+    return key % 8
+
+def save_data(data, value):
+    index_key = get_key(data)
+    hash_address = hash_function(index_key)
+    if hash_table[hash_address] != 0:
+        for index in range(hash_address, len(hash_table)):
+            if hash_table[index] == 0:
+                hash_table[index] = [index_key, value]
+                return
+            elif hash_table[index][0] == index_key:
+                hash_table[index][1] = value # 값 업데이트 
+                return 
+    else: 
+        hash_table[hash_address] = [index_key, value]
+     
+
+def read_data(data):
+    index_key = get_key(data)
+    hash_address = hash_function(index_key)
+    if hash_table[hash_address] != 0:
+        for index in range(hash_address, len(hash_table)):
+           if hash_table[index] == 0:
+               return None
+           elif hash_table[index][0] == index_key: 
+               return hash_table[index][1]
+    else:
+        return None

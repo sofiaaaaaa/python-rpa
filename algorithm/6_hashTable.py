@@ -233,3 +233,6 @@ def read_data(data):
                return hash_table[index][1]
     else:
         return None
+
+# hash table의 일반적인 시간복잡도는 O(1)
+# 충돌이 발생하면 O(n)

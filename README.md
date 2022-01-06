@@ -21,6 +21,17 @@ python-rpa 나도코딩 공부 노트
  pip install pillow --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
  pip install keyboard --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
 
+### requests 설치
+ pip3 install requests --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+ pip3 install certify --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+
+## beautifulsoup4 설치
+ pip3 install beautifulsoup4 --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+ pip3 install lxml --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+
+
+
+
 ## exe 파일 만들기 명령어
 
 ### 터미널에서 실행하는 프로그램 만들기 

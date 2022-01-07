@@ -28,7 +28,7 @@ print(inspect.getfile(random))
 # pypi로 패키지 받는 방법 
 # www.pypi.org 
 # 21만개 이상의 패키지 다운 가능.. 
-웹스크래핑 유명한거 설치하기 
-pip install beautifulsoup4 --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+# 웹스크래핑 유명한거 설치하기 
+# pip install beautifulsoup4 --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
 
 

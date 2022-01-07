@@ -21,3 +21,21 @@ soup = BeautifulSoup(res.text, "lxml") # lxml파서를 통해 soup 객체로 만
 items = soup.find_all("li", attrs={"class":re.compile("^search-product")})
 
 print(items[0].find("div", attrs={"class": "name"}).get_text())
+
+
+for item in items:
+    name = item.find("div", attr={"class":"name"}).get_text() #제품명
+    price = item.find("strong", attrs={"class":"price-value"}).get_text() #가격 
+    rate = item.find("em", attrs={"class":"rating"}) #평점 
+    if rate:
+        rate = rate.get_text()
+    else:
+        rate = "평점없음"
+
+    rate_cnt = item.find("em", attrs={"class":"rating-total-count"}).get_text() #평점수
+    if rate_cnt:
+        rate_cnt = rate_cnt.get_text()
+    else:
+        rate_cnt = "평점 수 없음"
+
+    print(name, price, rate, rate_cnt)

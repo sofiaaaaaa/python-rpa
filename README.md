@@ -9,7 +9,7 @@ python-rpa 나도코딩 공부 노트
 --- 
 
 ## RPA 프로그래밍 설치 라이브러리 
- pip install pyautogui openpyxl --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
+ pip3 install pyautogui openpyxl --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
  pip install pillow --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
  pip install pyperclip 
  pip install selenium  --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
@@ -29,7 +29,7 @@ python-rpa 나도코딩 공부 노트
  pip3 install beautifulsoup4 --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
  pip3 install lxml --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org
 
-
+## Selenium MacOS chromebrowser 설치 
 
 
 ## exe 파일 만들기 명령어
@@ -87,3 +87,8 @@ https://selenium-python.readthedocs.io/
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 browser = webdriver.Chrome(options=options)
+
+
+# chrome driver 프로세스 삭제 
+ps aux | grep chrome
+sudo kill 프로세스ID
